@@ -5,21 +5,23 @@ const Search = ({showClear, clearUsers,searchUsers, setAlert}) => {
     const [text, setText] = useState('');
 
    const onChange = (e) =>{
-    setText(e.target.value)
+    setText(e.target.value);
     }
+  
+
    const onSubmit = (e) =>{
         e.preventDefault();
         if(text===''){
            setAlert('Please Enter Something','light')
         }else{
             searchUsers(text);
-            setText({ text:''});
+            setText('');
         }
     }
         return (
             <div>
-                <form onSubmit={onSubmit} className="form">
-                <input type='text' name='text' placeholder='Search Users...' value={text} onChange={onChange}/>
+                <form onSubmit={(e)=>onSubmit(e)} className="form">
+                <input type='text' name='text' placeholder='Search Users...' value={text} onChange={(e)=>onChange(e)}/>
                 <input type='submit' value='Search' className='btn btn-dark btn-block'/>
                 </form>
                {showClear && <button className='btn btn-light btn-block' onClick={clearUsers}>Clear</button> }
